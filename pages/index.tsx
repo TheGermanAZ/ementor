@@ -7,14 +7,19 @@ const Home: NextPage = () => {
     return (
       <>
         Signed in as {session!.user?.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        <button className="btn btn-primary" onClick={() => signOut()}>
+          Sign out
+        </button>
       </>
     );
   }
   return (
     <>
+      <button className="btn btn-primary"> click me</button>
       Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <button className="btn btn-primary" onClick={() => signIn()}>
+        Sign in
+      </button>
     </>
   );
 };
