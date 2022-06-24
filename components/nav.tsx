@@ -7,8 +7,14 @@ import {
   Burger,
   Paper,
   Transition,
+  Button,
+  BackgroundImage,
+  Box,
 } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
+import Link from "next/link";
+import Image from "next/image";
+import image from "../public/RED_BG.jpg";
 
 const HEADER_HEIGHT = 60;
 
@@ -16,6 +22,9 @@ const useStyles = createStyles((theme) => ({
   root: {
     position: "relative",
     zIndex: 1,
+    backgroundImage: `url(${image})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   },
 
   dropdown: {
@@ -82,6 +91,7 @@ const useStyles = createStyles((theme) => ({
   linkActive: {
     "&, &:hover": {
       backgroundColor:
+        // bg color while page is active
         theme.colorScheme === "dark"
           ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
           : theme.colors[theme.primaryColor][0],
@@ -95,13 +105,15 @@ interface HeaderResponsiveProps {
   links: { link: string; label: string }[];
 }
 
-export default function Nav({ links }: HeaderResponsiveProps) {
+export default function Nav({
+  links,
+}: HeaderResponsiveProps) {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
 
   const items = links.map((link) => (
-    <a
+    <Link
       key={link.label}
       href={link.link}
       className={cx(classes.link, {
@@ -113,13 +125,25 @@ export default function Nav({ links }: HeaderResponsiveProps) {
         toggleOpened(false);
       }}
     >
-      {link.label}
-    </a>
+      <a
+        className={cx(classes.link, {
+          [classes.linkActive]: active === link.link,
+        })}
+      >
+        {link.label}
+      </a>
+    </Link>
   ));
 
   return (
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
       <Container className={classes.header}>
+        <Image
+          src="/WORKMAIL_WHITE.png"
+          alt="picture of ethan evans logo"
+          width={30}
+          height={30}
+        />
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
