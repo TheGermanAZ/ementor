@@ -1,7 +1,7 @@
 import Title from "../components/title";
 import type { NextPage } from "next";
-import { useSession, signIn, signOut } from "next-auth/react";
 import Nav from "../components/nav";
+import Welcome from "../components/welcome";
 
 const links = [
   {
@@ -27,6 +27,7 @@ const Home: NextPage = () => {
     <>
       <Nav links={links} />
       <Title />
+      <Welcome />
     </>
   );
 };

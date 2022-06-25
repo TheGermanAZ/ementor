@@ -105,9 +105,7 @@ interface HeaderResponsiveProps {
   links: { link: string; label: string }[];
 }
 
-export default function Nav({
-  links,
-}: HeaderResponsiveProps) {
+export default function Nav({ links }: HeaderResponsiveProps) {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
@@ -139,7 +137,7 @@ export default function Nav({
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
       <Container className={classes.header}>
         <Image
-          src="/WORKMAIL_WHITE.png"
+          src="/WORKMARK_WHITE.png"
           alt="picture of ethan evans logo"
           width={30}
           height={30}
